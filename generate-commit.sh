@@ -3,6 +3,8 @@
 set -ex
 echo "Pulling meta-balena"
 
+SCRIPT_PATH=meta-balena-common/recipes-containers/resin-supervisor/resin-supervisor.inc
+
 if [ -z $TAG ]; then
 	echo "A \$TAG variable is required with the new supervisor version"
 	exit 1
@@ -26,10 +28,10 @@ git branch "supervisor-$TAG"
 git checkout "supervisor-$TAG"
 
 echo "Performing supervisor update"
-sed -i "s/SUPERVISOR_TAG.*/SUPERVISOR_TAG ?= \"${TAG}\"/g" meta-resin-common/recipes-containers/resin-supervisor/resin-supervisor.inc
+sed -i "s/SUPERVISOR_TAG.*/SUPERVISOR_TAG ?= \"${TAG}\"/g" "${SCRIPT_PATH}"
 
 echo "Commiting and pushing"
-git add meta-resin-common/recipes-containers/resin-supervisor/resin-supervisor.inc
+git add "${SCRIPT_PATH}"
 git commit -s -F- <<EOF
 balena-supervisor: Update to ${TAG}
 
