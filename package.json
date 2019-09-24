@@ -4,8 +4,9 @@
   "description": "",
   "main": "generate-announcement.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
+  "private": true,
   "author": "Cameron Diver <cameron@balena.io>",
   "license": "Apache-2.0",
   "dependencies": {
