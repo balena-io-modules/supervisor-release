@@ -59,7 +59,7 @@ if (!_.isEmpty(apiToken)) {
 	};
 }
 
-const apiEndpointWithPrefix = url.resolve(apiEndpoint, '/v2/');
+const apiEndpointWithPrefix = url.resolve(apiEndpoint, '/v5/');
 const balenaApi = new PinejsClientRequest({
 	apiPrefix: apiEndpointWithPrefix,
 	passthrough: requestOpts,
