@@ -9,6 +9,9 @@ if [ -z $TAG ]; then
 	echo "A \$TAG variable is required with the new supervisor version"
 	exit 1
 fi
+if [ -z $OLD_TAG ]; then
+	echo "An \$OLD_TAG variable is required with the current supervisor version"
+fi
 
 read -p "Change-type? " CHANGE_TYPE
 
@@ -35,7 +38,9 @@ git add "${SCRIPT_PATH}"
 git commit -s -F- <<EOF
 balena-supervisor: Update to ${TAG}
 
-Changelog-entry: Update balena-supervisor to ${TAG}
+Update balena-supervisor from ${OLD_TAG} to ${TAG}
+
+Changelog-entry: Update balena-supervisor from ${OLD_TAG} to ${TAG}
 Change-type: ${CHANGE_TYPE}
 EOF
 
