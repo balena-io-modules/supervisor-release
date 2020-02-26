@@ -41,7 +41,7 @@ if (process.env.DEBUG) {
 	let newIdx = null;
 	const lines = changelog.split('\n');
 	lines.map((l, idx) => {
-		const match = l.match(/## (v?\d+.\d+.\d+)/);
+		const match = l.match(/##? (v?\d+.\d+.\d+)/);
 		if (match) {
 			if (!match[1].startsWith('v')) {
 				match[1] = 'v' + match[1];
