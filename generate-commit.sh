@@ -11,6 +11,7 @@ if [ -z $TAG ]; then
 fi
 if [ -z $OLD_TAG ]; then
 	echo "An \$OLD_TAG variable is required with the current supervisor version"
+	exit 1
 fi
 
 read -p "Change-type? " CHANGE_TYPE
