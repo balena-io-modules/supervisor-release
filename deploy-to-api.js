@@ -33,20 +33,12 @@ if (_.isEmpty(tag)) {
 	process.exit(1);
 }
 
-const supportedArchitectures = [
-	'amd64',
-	'rpi',
-	'aarch64',
-	'i386',
-	'armv7hf',
-	'i386-nlp',
-];
+const supportedArchitectures = ['amd64', 'rpi', 'aarch64', 'i386', 'armv7hf'];
 if (!_.isEmpty(arch) && !_.includes(supportedArchitectures, arch)) {
 	console.error('Invalid architecture ' + arch);
 	process.exit(1);
 }
 const archs = _.isEmpty(arch) ? supportedArchitectures : [arch];
-const quarkSlugs = ['iot2000', 'cybertan-ze250'];
 
 const requestOpts = {
 	gzip: true,
@@ -75,17 +67,14 @@ balenaApi
 			balenaApi.passthrough,
 		),
 	)
-	.then(deviceTypes => {
+	.then((deviceTypes) => {
 		// This is a critical step so we better do it serially
-		return Promise.mapSeries(deviceTypes, deviceType => {
+		return Promise.mapSeries(deviceTypes, (deviceType) => {
 			if (archs.indexOf(deviceType.arch) >= 0) {
 				const options = {};
 				let arch = deviceType.arch;
 				if (_.isEmpty(apiToken)) {
 					options.apikey = apikey;
-				}
-				if (quarkSlugs.indexOf(deviceType.slug) >= 0) {
-					arch = 'i386-nlp';
 				}
 				console.log(`Deploying ${tag} for ${deviceType.slug}`);
 				return balenaApi.post({
@@ -104,7 +93,7 @@ balenaApi
 	.then(() => {
 		process.exit(0);
 	})
-	.catch(err => {
+	.catch((err) => {
 		console.error(
 			`Error when deploying the supervisor to ${apiEndpoint}`,
 			err,
