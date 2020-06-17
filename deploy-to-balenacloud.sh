@@ -3,8 +3,6 @@ set -e
 
 BALENAOS_ACCOUNT="balena_os"
 
-echo "[INFO] Pulling ${TAG} from Docker Hub"
-docker pull "balena/${ARCH}-supervisor:${TAG}"
 echo "[INFO] Logging into ${API_ENDPOINT} as ${BALENAOS_ACCOUNT}"
 export BALENARC_BALENA_URL=${BALENARC_BALENA_URL}
 balena login --token "${API_TOKEN}"
