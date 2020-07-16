@@ -26,7 +26,6 @@ fi
 cd /tmp/meta-balena
 echo "Checking out develop branch and syncing"
 git reset --hard
-git checkout development
 git pull
 git branch "supervisor-$TAG"
 git checkout "supervisor-$TAG"
