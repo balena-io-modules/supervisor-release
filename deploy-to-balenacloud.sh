@@ -7,11 +7,7 @@ if [ -z "${API_TOKEN}" ]; then
     exit 1
 fi
 
-echo "[INFO] Logging into ${BALENARC_BALENA_URL} as ${BALENAOS_ACCOUNT}"
 export BALENARC_BALENA_URL=${BALENARC_BALENA_URL}
-if [[ "$(balena whoami | awk '/USERNAME/{print $2}')" != "${BALENAOS_ACCOUNT}" ]]; then
-    balena login --token "${API_TOKEN}"
-fi
 
 echo "[INFO] Pushing ${TAG} to ${BALENAOS_ACCOUNT}/${ARCH}-supervisor"
 _releaseID=$(balena deploy "${BALENAOS_ACCOUNT}/${ARCH}-supervisor" "balena/${ARCH}-supervisor:${TAG}" | sed -n 's/.*Release: //p')
