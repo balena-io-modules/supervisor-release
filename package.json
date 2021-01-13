@@ -1,6 +1,6 @@
 {
   "name": "supervisor-release",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "",
   "main": "generate-announcement.js",
   "scripts": {
